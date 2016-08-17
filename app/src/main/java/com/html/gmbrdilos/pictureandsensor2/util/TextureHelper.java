@@ -24,10 +24,6 @@ public class TextureHelper
     /**
      * Loads a texture from a resource ID, returning the OpenGL ID for that
      * texture. Returns 0 if the load failed.
-     *
-     * @param context
-     * @param resourceId
-     * @return
      */
     public static int loadTexture(Context context, int resourceId)
     {

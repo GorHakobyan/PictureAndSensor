@@ -55,7 +55,7 @@ public class mRenderer implements Renderer
 
         textureProgram = new TextureShaderProgram(context);
 
-        texture = TextureHelper.loadTexture(context, R.drawable.picture);
+        texture = TextureHelper.loadTexture(context, R.drawable.phodo);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class mRenderer implements Renderer
         // The table is defined in terms of X & Y coordinates, so we rotate it
         // 90 degrees to lie flat on the XZ plane.
         setIdentityM(modelMatrix, 0);
-        rotateM(modelMatrix, 0, -90f, 1f, 0f, 0f);
+        rotateM(modelMatrix, 0, 90f, 1f, 0f, 0f);
         multiplyMM(modelViewProjectionMatrix, 0, viewProjectionMatrix, 0, modelMatrix, 0);
     }
 

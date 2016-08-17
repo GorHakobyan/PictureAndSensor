@@ -2,8 +2,7 @@ package com.html.gmbrdilos.pictureandsensor2.util;
 
 public class MatrixHelper
 {
-    public static void perspectiveM(float[] m, float yFovInDegrees, float aspect,
-                                    float n, float f)
+    public static void perspectiveM(float[] m, float yFovInDegrees, float aspect, float n, float f)
     {
         final float angleInRadians = (float) (yFovInDegrees * Math.PI / 180.0);
         final float a = (float) (1.0 / Math.tan(angleInRadians / 2.0));

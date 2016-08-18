@@ -30,7 +30,8 @@ public class mRenderer implements Renderer
     private final float[] viewMatrix = new float[16];
     private final float[] viewProjectionMatrix = new float[16];
     private final float[] modelViewProjectionMatrix = new float[16];
-    float[] mat = new float[16];
+
+    private float[] mat = new float[16];
 
 
     private Table table;
@@ -83,7 +84,7 @@ public class mRenderer implements Renderer
 //                units above the x-z plane and 2.2 units back. In other words, everything in
 //                the scene will appear 1.2 units below you and 2.2 units in front of you.
 
-                0f, 0f, 2.8f,
+                0f, 1f, 2.8f,
 
 //                float centerX, centerY,centerZ
 //                This is where the eye is looking; this position will appear in the center of the scene.
@@ -106,6 +107,7 @@ public class mRenderer implements Renderer
     {
         // Clear the rendering surface.
         glClear(GL_COLOR_BUFFER_BIT);
+
         mat = grvCoordinates.getRotationMatrix();
 
         float[] tmp = new float [16];

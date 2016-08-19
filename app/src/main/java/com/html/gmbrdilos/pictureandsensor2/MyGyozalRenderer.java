@@ -117,12 +117,15 @@ public class MyGyozalRenderer implements Renderer
 
         mat = grvCoordinates.getRotationMatrix();
 
+        // Transpose matCache, save in matCacheTranspose
         Matrix.transposeM(matCacheTranspose, 0, matCache, 0);
+        // Multiply mat with matCacheTranspose, save in result
+        // With this I get the difference between mat and matCahce
         multiplyMM(result, 0, mat, 0, matCacheTranspose, 0);
 
         multiplyMM(tmp, 0, viewMatrix, 0, result, 0);
 
-        // Multiply the view and projection matrices together.
+        // Multiply the tmp and projection matrices together.
         multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, tmp, 0);
 
         // Draw the table.
@@ -135,10 +138,7 @@ public class MyGyozalRenderer implements Renderer
 
     private void positionTableInScene()
     {
-        // The table is defined in terms of X & Y coordinates, so we rotate it
-        // 90 degrees to lie flat on the XZ plane.
         setIdentityM(modelMatrix, 0);
-        rotateM(modelMatrix, 0, 90f, 1f, 0f, 0f);
         multiplyMM(modelViewProjectionMatrix, 0, viewProjectionMatrix, 0, modelMatrix, 0);
     }
 

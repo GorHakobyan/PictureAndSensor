@@ -3,6 +3,7 @@ package com.html.gmbrdilos.pictureandsensor2;
 import android.app.Activity;
 import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
+import android.opengl.Matrix;
 
 import com.html.gmbrdilos.pictureandsensor2.objects.Table;
 import com.html.gmbrdilos.pictureandsensor2.programs.TextureShaderProgram;
@@ -32,7 +33,10 @@ public class MyGyozalRenderer implements Renderer
     private final float[] modelViewProjectionMatrix = new float[16];
 
     private float[] mat = new float[16];
+    float[] matCache = new float[16];
+    float[] matCacheTranspose = new float[16];
     float[] tmp = new float [16];
+    float[] result = new float[16];
 
 
     private Table table;
@@ -66,6 +70,8 @@ public class MyGyozalRenderer implements Renderer
         // Set the OpenGL viewport to fill the entire surface.
         glViewport(0, 0, width, height);
         MatrixHelper.perspectiveM(projectionMatrix, 45, (float) width / (float) height, 1f, 10f);
+
+        matCache = grvCoordinates.getRotationMatrix();
 
         setLookAtM(
 //                float[] rm
@@ -111,7 +117,10 @@ public class MyGyozalRenderer implements Renderer
 
         mat = grvCoordinates.getRotationMatrix();
 
-        multiplyMM(tmp, 0, viewMatrix, 0, mat, 0);
+        Matrix.transposeM(matCacheTranspose, 0, matCache, 0);
+        multiplyMM(result, 0, mat, 0, matCacheTranspose, 0);
+
+        multiplyMM(tmp, 0, viewMatrix, 0, result, 0);
 
         // Multiply the view and projection matrices together.
         multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, tmp, 0);

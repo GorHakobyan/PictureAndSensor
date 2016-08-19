@@ -45,7 +45,7 @@ public class MainActivity extends Activity
             glSurfaceView.setEGLContextClientVersion(2);
 
             // Assign our renderer.
-            glSurfaceView.setRenderer(new mRenderer(this));
+            glSurfaceView.setRenderer(new MyGyozalRenderer(this));
             rendererSet = true;
         } else
         {

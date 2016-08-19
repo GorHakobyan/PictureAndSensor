@@ -21,7 +21,7 @@ import static android.opengl.Matrix.rotateM;
 import static android.opengl.Matrix.setIdentityM;
 import static android.opengl.Matrix.setLookAtM;
 
-public class mRenderer implements Renderer
+public class MyGyozalRenderer implements Renderer
 {
     private final Context context;
 
@@ -32,6 +32,7 @@ public class mRenderer implements Renderer
     private final float[] modelViewProjectionMatrix = new float[16];
 
     private float[] mat = new float[16];
+    float[] tmp = new float [16];
 
 
     private Table table;
@@ -41,7 +42,7 @@ public class mRenderer implements Renderer
 
     private int texture;
 
-    public mRenderer(Activity activity)
+    public MyGyozalRenderer(Activity activity)
     {
         this.context = activity.getApplicationContext();
         grvCoordinates = new GRVCoordinates(activity);
@@ -109,8 +110,6 @@ public class mRenderer implements Renderer
         glClear(GL_COLOR_BUFFER_BIT);
 
         mat = grvCoordinates.getRotationMatrix();
-
-        float[] tmp = new float [16];
 
         multiplyMM(tmp, 0, viewMatrix, 0, mat, 0);
 

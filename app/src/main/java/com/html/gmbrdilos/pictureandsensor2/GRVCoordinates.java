@@ -42,7 +42,8 @@ public class GRVCoordinates implements SensorEventListener
         if (sensorEvent.sensor.getType() != Sensor.TYPE_GAME_ROTATION_VECTOR)
         {
             return;
-        } else
+        }
+        else
         {
             values = sensorEvent.values.clone();
         }
